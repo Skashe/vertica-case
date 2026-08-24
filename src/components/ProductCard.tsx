@@ -4,6 +4,7 @@ import {
     CardMedia,
     Typography,
 } from '@mui/material'
+import { Link } from 'react-router'
 import type { Product } from '../types/product'
 
 type ProductCardProps = {
@@ -12,7 +13,14 @@ type ProductCardProps = {
 
 function ProductCard({ product }: ProductCardProps) {
     return (
-        <Card>
+        <Card
+            component={Link}
+            to={`/products/${product.id}`}
+            sx={{
+                height: '100%',
+                textDecoration: 'none',
+            }}
+        >
             <CardMedia
                 component="img"
                 height="140"
@@ -26,7 +34,7 @@ function ProductCard({ product }: ProductCardProps) {
             />
 
             <CardContent>
-                <Typography variant='h6' component='h2'>
+                <Typography variant='h6'>
                     {product.title}
                 </Typography>
 
