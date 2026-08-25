@@ -18,7 +18,14 @@ function ProductCard({ product }: ProductCardProps) {
             to={`/products/${product.id}`}
             sx={{
                 height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
                 textDecoration: 'none',
+                color: 'inherit',
+                transition: 'transform 0.2s box-shadow 0.2s',
+                '&:hover': {
+                    boxShadow: 6,
+                },
             }}
         >
             <CardMedia
@@ -33,17 +40,39 @@ function ProductCard({ product }: ProductCardProps) {
                 }}
             />
 
-            <CardContent>
-                <Typography variant='h6'>
-                    {product.title}
+            <CardContent
+                sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                flexGrow: 1,
+                }}
+            >
+                <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ mb: 1 }}
+                >
+                {product.category}
                 </Typography>
 
-                <Typography variant='body2' color='text.secondary'>
-                    {product.category}
+                <Typography
+                variant="h6"
+                sx={{
+                    mb: 2,
+                    display: '-webkit-box',
+                    WebkitBoxOrient: 'vertical',
+                    WebkitLineClamp: 2,
+                    overflow: 'hidden',
+                }}
+                >
+                {product.title}
                 </Typography>
 
-                <Typography variant='h6' sx={{ mt: 2}}>
-                    ${product.price.toFixed(2)}
+                <Typography
+                variant="h6"
+                sx={{ mt: 'auto' }}
+                >
+                ${product.price.toFixed(2)}
                 </Typography>
             </CardContent>
         </Card>

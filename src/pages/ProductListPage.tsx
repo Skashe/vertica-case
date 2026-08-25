@@ -5,7 +5,7 @@ import { getProducts } from '../api/products'
 import ProductCard from '../components/ProductCard'
 
 function ProductListPage() {
-  const [products, setProducts] = useState<Product[]>([])
+    const [products, setProducts] = useState<Product[]>([])
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string | null>(null)
   
