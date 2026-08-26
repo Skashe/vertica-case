@@ -10,6 +10,7 @@ function ProductListPage() {
     const [error, setError] = useState<string | null>(null)
   
     useEffect(() => {
+        // Maybe use react-query??
       const fetchProducts = async () => {
         try {
           const products = await getProducts()

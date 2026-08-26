@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import {
   Button,
   Card,
@@ -9,6 +9,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
+import { ShoppingCart } from '@mui/icons-material'
 import { Link, useParams } from 'react-router'
 import { getProductById } from '../api/products'
 import type { Product } from '../types/product'
@@ -16,11 +17,11 @@ import type { Product } from '../types/product'
 function ProductDetailsPage() {
   const { id } = useParams()
 
-  const [product, setProduct] = React.useState<Product | null>(null)
-  const [loading, setLoading] = React.useState(true)
-  const [error, setError] = React.useState<string | null>(null)
+  const [product, setProduct] = useState<Product | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function loadProduct() {
       if (!id) {
         setError('Product ID is missing.')
@@ -66,7 +67,7 @@ function ProductDetailsPage() {
   return (
     <Container sx={{ py: 4 }}>
       <Button component={Link} to="/products" sx={{ mb: 3 }}>
-        ← Back to products
+        Back to products
       </Button>
 
       <Card>
@@ -106,6 +107,16 @@ function ProductDetailsPage() {
             <Typography variant="body1">
               {product.description}
             </Typography>
+
+            <Button
+              variant="contained"
+              startIcon={<ShoppingCart />}
+              fullWidth
+              sx={{ xs: '100%', sm: 'auto', mt: 3 }}
+            >
+              Add to Cart
+            </Button>
+
           </CardContent>
         </Stack>
       </Card>
