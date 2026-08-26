@@ -32,8 +32,12 @@ function ProductDetailsPage() {
       try {
         const data = await getProductById(Number(id))
         setProduct(data)
-      } catch {
-        setError('Could not load product.')
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message)
+        } else {
+          setError('An unknown error occurred.')
+        }
       } finally {
         setLoading(false)
       }

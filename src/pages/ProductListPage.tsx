@@ -16,7 +16,11 @@ function ProductListPage() {
           const products = await getProducts()
           setProducts(products)
         } catch (error) {
+          if (error instanceof Error) {
           setError(error.message)
+          } else {
+            setError('An unknown error occurred.')
+          }
         } finally {
           setLoading(false)
         }
